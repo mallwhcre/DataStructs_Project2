@@ -11,6 +11,5 @@ mkdir build
 cd build
 cmake ..
 make
-
 ```
 The executable will be under /build
