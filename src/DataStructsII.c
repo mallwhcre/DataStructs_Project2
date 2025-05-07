@@ -1,11 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "lib.h"
+
+#include "avlTree.h"
+#include "fileParsing.h"
 
 int main()
 {
 
-    printf("sum is %d", add(5, 6));
+    test();
 
     return 0;
 }
