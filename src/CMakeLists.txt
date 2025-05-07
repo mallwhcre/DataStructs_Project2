@@ -1,0 +1,3 @@
+add_executable(DataStructsII DataStructsII.c)
+
+target_link_libraries(DataStructsII PRIVATE lib)
