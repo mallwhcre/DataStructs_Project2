@@ -7,28 +7,37 @@
 #define MAX_ENTRIES 50000
 #define MAX_LINELEN 5000
 
-typedef struct Date{
-    int day;
-    int month;
-    int year;
-    int hour;
-    int minute;
-    int second;
-}Date;
-
-typedef struct Record
-{
-    char timestamp[24];
-    int value;
-    Date date;
-} Record;
-
-
-
 int main()
 {
 
-    test();
+    FILE *temps;
+    temps = fopen("tempm.txt", "r");
 
+    int rec_index_temp = 0;
+
+    if (temps == NULL)
+    {
+        printf("Error opening file\n");
+        return 1;
+    }
+    else
+    {
+        printf("File opened successfully\n");
+    }
+    Record rec[MAX_ENTRIES];
+    readFile(rec, temps, &rec_index_temp);
+
+    for (int i = 0; i < rec_index_temp; i++)
+    {
+        splitDate(rec, &i);
+    }
+
+    printf("Number of records: %d\n", rec_index_temp);
+    printf("First record: %s %d\n", rec[0].timestamp, rec[0].value);
+
+    printf("The date is: %d/%d/%d\n", rec[0].date.day, rec[0].date.month, rec[0].date.year);
+    //int i=0;
+    //printf("The average temperature is: %d\n", dayAvg(rec, &i));
+ 
     return 0;
 }
