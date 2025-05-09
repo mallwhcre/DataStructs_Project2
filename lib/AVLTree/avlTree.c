@@ -82,7 +82,67 @@ static int nodeBalance(avl_node *node)
     return height(node->left) - height(node->right);
 }
 
-static avl_node *insertNode(avl_node *node, Record rec)
+static avl_node *minValueNode(avl_node *node)
+{
+    avl_node *current = node;
+
+    while (current->left != NULL)
+    {
+        current = current->left;
+    }
+
+    return current;
+}
+
+/******************** PUBLIC **********************/
+
+void editNode(avl_node *root_node, Date date_to_edit, int new_temp)
+{
+    if (root_node == NULL)
+    {
+        return;
+    }
+
+    else if (dateIsEqual(root_node->record.date, date_to_edit))
+    {   
+        root_node->record.value = new_temp;
+    }
+
+    else if (dateIsGreater(root_node->record.date, date_to_edit))
+    {
+        editNode(root_node->left, date_to_edit, new_temp);
+    }
+
+    else
+    {
+        editNode(root_node->right, date_to_edit, new_temp);
+    }
+}
+
+int searchAVL(avl_node *root_node, Date date)
+{
+    if (root_node == NULL)
+    {
+        return 0;
+    }
+
+    else if (dateIsEqual(root_node->record.date, date))
+    {
+        return root_node->record.value;
+    }
+
+    else if (dateIsGreater(root_node->record.date, date))
+    {
+        return searchAVL(root_node->left, date);
+    }
+
+    else
+    {
+        return searchAVL(root_node->right, date);
+    }
+}
+
+avl_node *insertNode(avl_node *node, Record rec)
 {
     if (node == NULL)
     {
@@ -133,13 +193,102 @@ static avl_node *insertNode(avl_node *node, Record rec)
     return node;
 }
 
-/******************** PUBLIC **********************/
+avl_node *deleteNode(avl_node *root_node, Date key)
+{
+    if (root_node == NULL)
+    {
+        return root_node;
+    }
+
+    if (dateIsGreater(root_node->record.date, key))
+    {
+        root_node->left = deleteNode(root_node->left, key);
+    }
+
+    else if (dateIsGreater(key, root_node->record.date))
+    {
+        root_node->right = deleteNode(root_node->right, key);
+    }
+
+    else
+    {
+        if ((root_node->left == NULL) || (root_node->right == NULL))
+        {
+            avl_node *temp;
+
+            if (root_node->left)
+            {
+                temp = root_node->left;
+            }
+
+            else
+            {
+                temp = root_node->right;
+            }
+
+            if (temp == NULL)
+            {
+                temp = root_node;
+                root_node = NULL;
+            }
+
+            else
+            {
+                *root_node = *temp;
+            }
+
+            free(temp);
+        }
+
+        else
+        {
+            avl_node *temp = minValueNode(root_node->right);
+
+            root_node->record = temp->record;
+
+            root_node->right = deleteNode(root_node->right, temp->record.date);
+        }
+    }
+
+    if (root_node == NULL)
+    {
+        return root_node;
+    }
+
+    root_node->height = max(height(root_node->left), height(root_node->right)) + 1;
+
+    int balance = nodeBalance(root_node);
+
+    if (balance > 1 && nodeBalance(root_node->left) >= 0)
+    {
+        return rotateRight(root_node);
+    }
+
+    if (balance > 1 && nodeBalance(root_node->left) < 0)
+    {
+        root_node->left = rotateLeft(root_node->left);
+        return rotateRight(root_node);
+    }
+
+    if (balance < -1 && nodeBalance(root_node->right) <= 0)
+    {
+        return rotateLeft(root_node);
+    }
+
+    if (balance < -1 && nodeBalance(root_node->right) > 0)
+    {
+        root_node->right = rotateRight(root_node->right);
+        return rotateLeft(root_node);
+    }
+
+    return root_node;
+}
 
 void showPreOrder(avl_node *root_node)
 {
     if (root_node != NULL)
     {
-        printf("\t%d/%d/%d\t", root_node->record.date.day, root_node->record.date.month, root_node->record.date.year);
+        printf("\t%d/%d/%d : %d\t", root_node->record.date.day, root_node->record.date.month, root_node->record.date.year, root_node->record.value);
         showPreOrder(root_node->left);
         showPreOrder(root_node->right);
     }

@@ -3,6 +3,8 @@
 
 #include <stdbool.h>
 
+#define dateIsEqual(date1, date2) ((date1).year == (date2).year && (date1).month == (date2).month && (date1).day == (date2).day)
+
 typedef struct Date
 {
     int day;

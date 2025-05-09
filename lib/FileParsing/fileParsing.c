@@ -7,92 +7,7 @@
 #define MAX_ENTRIES 50000
 #define MAX_LINELEN 5000
 
-void readFile(Record *rec, FILE *f, int *recIndex)
-{
-    char line[MAX_LINELEN];
-
-    while (fgets(line, sizeof(line), f) != NULL && *recIndex < MAX_ENTRIES)
-    {
-        int tempIndex = *recIndex;
-        int sum = 0; // for the avg
-        int count = 0;
-
-        Record tempRec[MAX_ENTRIES];
-
-        char *current_pos = line; // pos in the line
-
-        // find opening brace
-        while (*current_pos && *current_pos != '{')
-            current_pos++;
-
-        current_pos++; // skip brace
-
-        while (*current_pos && *current_pos != '}')
-        {
-            if (*current_pos == '\0' || *current_pos == '}')
-                break;
-
-            // timestamp
-            char *openingQ = strchr(current_pos, '"');
-            if (!openingQ)
-                break;
-
-            char *closingQ = strchr(openingQ + 1, '"');
-            if (!closingQ)
-                break;
-
-            int sizeOf = closingQ - openingQ - 1;
-
-            strncpy(tempRec[tempIndex].timestamp, openingQ + 1, sizeOf);
-
-            tempRec[tempIndex].timestamp[sizeOf] = '\0'; // null terminate the timestamp
-
-            // value
-            char *colon = strchr(closingQ, ':');
-            if (!colon)
-                break;
-
-            // Find value
-            openingQ = strchr(colon, '"');
-            if (!openingQ)
-                break;
-
-            closingQ = strchr(openingQ + 1, '"');
-            if (!closingQ)
-                break;
-
-            sizeOf = closingQ - openingQ - 1;
-
-            char temp[5]; // holds the value
-            strncpy(temp, openingQ + 1, sizeOf);
-            temp[sizeOf] = '\0';
-
-            tempRec[tempIndex].value = atoi(temp);
-            sum += tempRec[tempIndex].value;
-            count++;
-
-            // next pair
-            current_pos = closingQ + 1;
-            tempIndex += 1;
-
-            if (tempIndex >= MAX_ENTRIES)
-                break;
-        }
-        // copy the tempRec to rec
-        int avg=sum/count;
-        rec[*recIndex].value = avg; // set the value to the average
-
-        strcpy(rec[*recIndex].timestamp, tempRec[0].timestamp); // copy the timestamp
-
-        *recIndex ++; // update the recIndex
-    }
-
-    fclose(f);
-}
-
-// Placeholder
-
-void splitDate(Record *rec, int recIndex)
+static void splitDate(Record *rec, int recIndex)
 {
     char year[5];
     char month[3];
@@ -146,6 +61,60 @@ void splitDate(Record *rec, int recIndex)
     rec[recIndex].date.month = atoi(month);
     rec[recIndex].date.year = atoi(year);
 }
+
+void readFile(Record *rec, int *recIndex, FILE *file)
+{
+
+    char line[MAX_LINELEN];
+    Record rec_buffer[MAX_ENTRIES]; // to store the line each time
+    int rec_buffer_index = 0;
+
+    while (fgets(line, sizeof(line), file))
+    {
+        char *current_pos = line;
+        current_pos++; // skip the brace
+        int sum_of_line = 0;
+        rec_buffer_index = 0;
+
+        while (*current_pos != '}')
+        {
+            char *openingQ = strchr(current_pos, '"');
+            char *closingQ = strchr(openingQ + 1, '"');
+            int sizeOf = closingQ - openingQ - 1;
+            strncpy(rec_buffer[rec_buffer_index].timestamp, openingQ + 1, sizeOf);
+            rec_buffer[rec_buffer_index].timestamp[sizeOf] = '\0'; // null terminate the timestamp
+            char *colon = strchr(closingQ, ':');
+
+            openingQ = strchr(colon, '"');
+            closingQ = strchr(openingQ + 1, '"');
+            sizeOf = closingQ - openingQ - 1;
+
+            char temp[5]; // holds the value
+            strncpy(temp, openingQ + 1, sizeOf);
+            temp[sizeOf] = '\0';
+
+            rec_buffer[rec_buffer_index].value = atoi(temp);
+            sum_of_line += rec_buffer[rec_buffer_index].value;
+
+            current_pos = closingQ + 1;
+            rec_buffer_index++;
+        }
+
+        rec[*recIndex] = rec_buffer[0];
+        rec[*recIndex].value = sum_of_line / rec_buffer_index;
+        splitDate(rec, *recIndex);
+
+        // printf("Record %d: %s = %d\n", *recIndex, rec[*recIndex].timestamp, rec[*recIndex].value);
+
+        *recIndex += 1;
+    }
+
+    fclose(file);
+}
+
+// Placeholder
+
+
 
 int dayAvg(Record *rec, int recIndex)
 {

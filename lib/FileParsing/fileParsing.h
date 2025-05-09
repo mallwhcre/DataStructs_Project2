@@ -6,9 +6,8 @@
 #include "commonTypes.h"
 
 
-void readFile(Record *rec, FILE *f, int *recIndex);
+void readFile(Record *rec, int *recIndex, FILE *file);
 int dayAvg(Record *rec, int recIndex);     // calculates the average temp of a day
-void splitDate(Record *rec, int recIndex); // splits the dates
 
 
 #endif

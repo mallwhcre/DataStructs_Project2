@@ -1,6 +1,4 @@
 
--need to add delete and search for AVL
-
 FIXED Average from each line , each line is data from a day
 DONE: AVL Tree
 
