@@ -13,11 +13,18 @@ void readFile(Record *rec, FILE *f, int *recIndex)
 
     while (fgets(line, sizeof(line), f) != NULL && *recIndex < MAX_ENTRIES)
     {
+        int tempIndex = *recIndex;
+        int sum = 0; // for the avg
+        int count = 0;
+
+        Record tempRec[MAX_ENTRIES];
+
         char *current_pos = line; // pos in the line
 
         // find opening brace
         while (*current_pos && *current_pos != '{')
             current_pos++;
+
         current_pos++; // skip brace
 
         while (*current_pos && *current_pos != '}')
@@ -36,9 +43,9 @@ void readFile(Record *rec, FILE *f, int *recIndex)
 
             int sizeOf = closingQ - openingQ - 1;
 
-            strncpy(rec[*recIndex].timestamp, openingQ + 1, sizeOf);
+            strncpy(tempRec[tempIndex].timestamp, openingQ + 1, sizeOf);
 
-            rec[*recIndex].timestamp[sizeOf] = '\0'; // null terminate the timestamp
+            tempRec[tempIndex].timestamp[sizeOf] = '\0'; // null terminate the timestamp
 
             // value
             char *colon = strchr(closingQ, ':');
@@ -60,15 +67,24 @@ void readFile(Record *rec, FILE *f, int *recIndex)
             strncpy(temp, openingQ + 1, sizeOf);
             temp[sizeOf] = '\0';
 
-            rec[*recIndex].value = atof(temp);
+            tempRec[tempIndex].value = atoi(temp);
+            sum += tempRec[tempIndex].value;
+            count++;
 
             // next pair
             current_pos = closingQ + 1;
-            *recIndex += 1;
+            tempIndex += 1;
 
-            if (*recIndex >= MAX_ENTRIES)
+            if (tempIndex >= MAX_ENTRIES)
                 break;
         }
+        // copy the tempRec to rec
+        int avg=sum/count;
+        rec[*recIndex].value = avg; // set the value to the average
+
+        strcpy(rec[*recIndex].timestamp, tempRec[0].timestamp); // copy the timestamp
+
+        *recIndex ++; // update the recIndex
     }
 
     fclose(f);
@@ -164,4 +180,3 @@ int dayAvg(Record *rec, int recIndex)
 
     return avg;
 }
-

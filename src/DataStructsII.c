@@ -40,9 +40,9 @@ int main()
 
     for (int i = 0; i < rec_index_temp; i++)
     {
-        printf("Record %d: %s = %f\n", i, rec[i].timestamp, rec[i].value);
+        printf("Record %d: %s = %d\n", i, rec[i].timestamp, rec[i].value);
     }
-
+        
     printf("\n\n");
 
     avl_node *root_node = NULL;
