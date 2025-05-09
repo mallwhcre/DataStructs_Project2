@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/DataStructsII.dir/DataStructsII.c.o -o ../DataStructsII  ../lib/AVLTree/libAVLTree.a ../lib/FileParsing/libFileParsing.a 

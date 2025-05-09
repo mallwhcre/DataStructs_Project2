@@ -1,4 +1,7 @@
--Make AVL tree
+-Make AVL tree chech
+    -need to add delete and search
+
+!!!!!!!!!!!!!!!!!!!!PROSEKSTE LEEI MIA GRAMMH EINAI MIA MERA ARA THELOUME THN MESH TIMH THERMOKRASIAS APO KATHE GRAMMH!!!!!!!!!!!!!!!!!!!
 
 -Make Menu:
 

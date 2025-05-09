@@ -11,7 +11,7 @@ int main()
 {
 
     FILE *temps;
-    temps = fopen("tempm.txt", "r");
+    temps = fopen("../testfiles/tempm.txt", "r");
 
     int rec_index_temp = 0;
 
@@ -29,15 +29,27 @@ int main()
 
     for (int i = 0; i < rec_index_temp; i++)
     {
-        splitDate(rec, &i);
+        splitDate(rec, i);
+        printf("%d/%d/%d\n", rec[i].date.day, rec[i].date.month, rec[i].date.year);
     }
 
-    printf("Number of records: %d\n", rec_index_temp);
-    printf("First record: %s %d\n", rec[0].timestamp, rec[0].value);
+    // printf("Number of records: %d\n", rec_index_temp);
+    // printf("First record: %s %d\n", rec[0].timestamp, rec[0].value);
 
-    printf("The date is: %d/%d/%d\n", rec[0].date.day, rec[0].date.month, rec[0].date.year);
-    //int i=0;
-    //printf("The average temperature is: %d\n", dayAvg(rec, &i));
- 
+    // printf("The date is: %d/%d/%d\n", rec[0].date.day, rec[0].date.month, rec[0].date.year);
+
+    for (int i = 0; i < rec_index_temp; i++)
+    {
+        printf("Record %d: %s = %f\n", i, rec[i].timestamp, rec[i].value);
+    }
+
+    printf("\n\n");
+
+    avl_node *root_node = NULL;
+
+    root_node = insertDataToAVL(root_node, rec, rec_index_temp);
+
+    showPreOrder(root_node);
+
     return 0;
 }

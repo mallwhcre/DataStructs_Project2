@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#define MAX_ENTRIES 50000
+#define MAX_LINELEN 5000
+
 void readFile(Record *rec, FILE *f, int *recIndex)
 {
     char line[MAX_LINELEN];
@@ -71,16 +74,15 @@ void readFile(Record *rec, FILE *f, int *recIndex)
     fclose(f);
 }
 
-
 // Placeholder
 
-void splitDate(Record *rec, int *recIndex)
+void splitDate(Record *rec, int recIndex)
 {
-    char year[5] ;
-    char month[3] ;
-    char day[3] ;
+    char year[5];
+    char month[3];
+    char day[3];
 
-    char *timestamp = rec[*recIndex].timestamp;
+    char *timestamp = rec[recIndex].timestamp;
     char *hyphen1 = strchr(timestamp, '-');
 
     if (hyphen1)
@@ -124,17 +126,16 @@ void splitDate(Record *rec, int *recIndex)
         }
     }
 
-    rec[*recIndex].date.day = atoi(day);
-    rec[*recIndex].date.month = atoi(month);
-    rec[*recIndex].date.year = atoi(year);
+    rec[recIndex].date.day = atoi(day);
+    rec[recIndex].date.month = atoi(month);
+    rec[recIndex].date.year = atoi(year);
 }
 
-
-int dayAvg(Record *rec, int *recIndex)
+int dayAvg(Record *rec, int recIndex)
 {
     splitDate(rec, recIndex);
 
-    int i = *recIndex;
+    int i = recIndex;
 
     int keyDay = rec[i].date.day;
     int keyMonth = rec[i].date.month;
@@ -149,7 +150,7 @@ int dayAvg(Record *rec, int *recIndex)
     {
         if (rec[i].date.day == keyDay && rec[i].date.month == keyMonth && rec[i].date.year == keyYear)
         {
-            sum += rec[*recIndex].value;
+            sum += rec[recIndex].value;
             count++;
         }
         else
@@ -163,3 +164,4 @@ int dayAvg(Record *rec, int *recIndex)
 
     return avg;
 }
+
