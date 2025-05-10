@@ -38,7 +38,6 @@ int main()
 
     root_node = insertDataToAVL(root_node, rec, rec_index_temp);
 
-    // showPreOrder(root_node);
     ////////////////MENU/////////////////
 
     printf("SELECTION MENU:\n");
@@ -59,7 +58,8 @@ int main()
         switch (choice)
         {
         case 1:
-
+            finalDisplay(root_node);
+            printf("Tree displayed successfully.\n");
             break;
         case 2:
             printf("Enter the date to search (yyyy-mm-dd): ");
@@ -86,13 +86,19 @@ int main()
 
             Date date_to_edit;
 
-            if (searchAVL(root_node, date_to_edit) == 0)
+            scanf("%d-%d-%d", &date_to_edit.year, &date_to_edit.month, &date_to_edit.day);\
+
+            while (searchAVL(root_node, date_to_edit) == 0)
             {
                 printf("No record found for the given date.\n");
+                printf("Please enter a valid date to modify (yyyy-mm-dd): ");
+
+                scanf("%d-%d-%d", &date_to_edit.year, &date_to_edit.month, &date_to_edit.day);
+
                 break;
             }
+            printf("Old record: %d/%d/%d : %d\n", date_to_edit.day, date_to_edit.month, date_to_edit.year, searchAVL(root_node, date_to_edit));
 
-            scanf("%d-%d-%d", &date_to_edit.year, &date_to_edit.month, &date_to_edit.day);
             printf("Enter the new temperature average: ");
 
             int new_temp;
@@ -109,14 +115,20 @@ int main()
 
             Date date_to_delete;
 
-            if (searchAVL(root_node, date_to_delete) == 0)
-            {
-                printf("No record found for the given date.\n");
-                break;
-            }
-
             scanf("%d-%d-%d", &date_to_delete.year, &date_to_delete.month, &date_to_delete.day);
 
+            while (searchAVL(root_node, date_to_delete) == 0)
+            {
+                printf("No record found for the given date.\n");
+                printf("Please enter a valid date to delete (yyyy-mm-dd): ");
+
+                scanf("%d-%d-%d", &date_to_delete.year, &date_to_delete.month, &date_to_delete.day);
+
+                break;
+            }
+            
+            printf("Record to be deleted: %d/%d/%d : %d\n", date_to_delete.day, date_to_delete.month, date_to_delete.year, searchAVL(root_node, date_to_delete));
+            
             root_node = deleteNode(root_node, date_to_delete);
 
             printf("Record deleted successfully.\n");

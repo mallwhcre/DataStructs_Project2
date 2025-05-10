@@ -94,6 +94,16 @@ static avl_node *minValueNode(avl_node *node)
     return current;
 }
 
+static void showInOrder(avl_node *root_node)
+{
+    if (root_node != NULL)
+    {
+        showInOrder(root_node->left);
+        printf("\t%d-%d-%d : %dC\t", root_node->record.date.year, root_node->record.date.month,root_node->record.date.day, root_node->record.value);
+        showInOrder(root_node->right);
+    }
+}
+
 /******************** PUBLIC **********************/
 
 void editNode(avl_node *root_node, Date date_to_edit, int new_temp)
@@ -104,7 +114,7 @@ void editNode(avl_node *root_node, Date date_to_edit, int new_temp)
     }
 
     else if (dateIsEqual(root_node->record.date, date_to_edit))
-    {   
+    {
         root_node->record.value = new_temp;
     }
 
@@ -288,11 +298,24 @@ void showPreOrder(avl_node *root_node)
 {
     if (root_node != NULL)
     {
-        printf("\t%d/%d/%d : %d\t", root_node->record.date.day, root_node->record.date.month, root_node->record.date.year, root_node->record.value);
+        printf("\t%d-%d-%d : %dC\t", root_node->record.date.day, root_node->record.date.month, root_node->record.date.year, root_node->record.value);
         showPreOrder(root_node->left);
         showPreOrder(root_node->right);
     }
 }
+
+void finalDisplay(avl_node *root_node)
+{
+printf("\n-----------------------------------------\n");
+printf("| Date (YYYY-MM-DD) | Temperature (C) |\n");
+printf("-----------------------------------------\n");
+
+showInOrder(root_node);
+
+printf("-----------------------------------------\n\n");
+}
+   
+
 
 avl_node *insertDataToAVL(avl_node *root_node, Record *rec, int num_of_records)
 {
@@ -303,3 +326,4 @@ avl_node *insertDataToAVL(avl_node *root_node, Record *rec, int num_of_records)
 
     return root_node;
 }
+

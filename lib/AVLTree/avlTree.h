@@ -9,6 +9,6 @@ avl_node *deleteNode(avl_node *root_node, Date key);
 avl_node *insertNode(avl_node *node, Record rec);
 int searchAVL(avl_node *root_node, Date date);
 void editNode(avl_node *root_node, Date date_to_edit, int new_temp);
-
+void finalDisplay(avl_node *root_node);
 
 #endif

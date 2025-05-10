@@ -2,11 +2,5 @@
 FIXED Average from each line , each line is data from a day
 DONE: AVL Tree
 
-DONE: Menu now works, error handling for menu, choice 1 is empty is still pending (NOTHS)
+DONE: Menu now work
 
-menu will include :
-
-1. Απεικόνιση του ΔΔΑ με ενδο-διατεταγμένη διάσχιση. Κάθε απεικόνιση θα πρέπει να περιέχει
-μια επικεφαλίδα με τους τίτλους των στοιχείων των εγγραφών που απεικονίζονται.
-
-menu will be a terminal app.
