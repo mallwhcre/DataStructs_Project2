@@ -1,0 +1,2 @@
+/usr/bin/ar qc libFileParsing.a CMakeFiles/FileParsing.dir/fileParsing.c.o
+/usr/bin/ranlib libFileParsing.a

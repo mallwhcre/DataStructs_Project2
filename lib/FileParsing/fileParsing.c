@@ -7,7 +7,7 @@
 #define MAX_ENTRIES 50000
 #define MAX_LINELEN 5000
 
-static void splitDate(Record *rec, int recIndex)
+ void splitDate(Record *rec, int recIndex)
 {
     char year[5];
     char month[3];
