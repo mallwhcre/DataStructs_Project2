@@ -3,4 +3,3 @@ FIXED Average from each line , each line is data from a day
 DONE: AVL Tree
 
 DONE: Menu now work
-
