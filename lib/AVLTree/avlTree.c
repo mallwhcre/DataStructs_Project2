@@ -106,6 +106,7 @@ static void showInOrder(avl_node *root_node)
 
 /******************** PUBLIC **********************/
 
+
 void editNode(avl_node *root_node, Date date_to_edit, int new_temp)
 {
     if (root_node == NULL)
@@ -152,7 +153,7 @@ int searchAVL(avl_node *root_node, Date date)
     }
 }
 
-avl_node *insertNode(avl_node *node, Record rec)
+avl_node *insertNode(avl_node *node, Record rec) 
 {
     if (node == NULL)
     {
@@ -327,3 +328,73 @@ avl_node *insertDataToAVL(avl_node *root_node, Record *rec, int num_of_records)
     return root_node;
 }
 
+/******************AVG TEMP BASED IMPLEMENTATION******************/
+
+avl_node  *insertTempNode(avl_node *node, Record rec)
+{
+    if (node == NULL)
+    {
+        return newAvlNode(rec);
+    }
+
+    if (rec.value < node->record.value) // key < node key
+    {
+        node->left = insertTempNode(node->left, rec);
+    }
+
+    else if (rec.value > node->record.value)
+    {
+        node->right = insertTempNode(node->right, rec);
+    }
+
+    else // AVL should not have equal
+    {
+        return node;
+    }
+
+    node->height = 1 + max(height(node->left), height(node->right));
+
+    int balance = nodeBalance(node);
+
+    if (balance > 1 && rec.value < node->left->record.value)
+    {
+        return rotateRight(node);
+    }
+
+    if (balance < -1 && rec.value > node->right->record.value)
+    {
+        return rotateLeft(node);
+    }
+
+    if (balance > 1 && rec.value < node->left->record.value)
+    {
+        node->left = rotateLeft(node->left);
+        return rotateRight(node);
+    }
+
+    if (balance < -1 && rec.value > node->right->record.value)
+    {
+        node->right = rotateRight(node->right);
+        return rotateLeft(node);
+    }
+
+    return node;
+}
+avl_node *insertTempDataToAVL(avl_node *root_node, Record *rec, int num_of_records){
+    for (int i = 0; i < num_of_records; i++)
+    {
+        root_node = insertTempNode(root_node, rec[i]);
+    }
+
+    return root_node;
+}
+
+/*int findMaxTemp(){
+
+}
+*/
+
+/*int findMinTemp(){
+
+}
+*/

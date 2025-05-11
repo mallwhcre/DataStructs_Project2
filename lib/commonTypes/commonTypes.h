@@ -19,7 +19,10 @@ typedef struct Record
     int value;
     Date date;
 
+    
+
 } Record;
+
 
 typedef struct Node avl_node;
 
@@ -31,6 +34,9 @@ struct Node
     int height;
 };
 
+
+
 bool dateIsGreater(Date date1, Date date2);
+bool tempIsGreater(int temp1, int temp2);
 
 #endif

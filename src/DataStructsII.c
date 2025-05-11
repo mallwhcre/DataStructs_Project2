@@ -7,6 +7,9 @@
 #define MAX_ENTRIES 50000
 #define MAX_LINELEN 5000
 
+void dateTree(Record *rec, int rec_index_temp);
+void tempTree();
+
 int main()
 {
 
@@ -34,13 +37,42 @@ int main()
 
     printf("\n\n");
 
+    ////////////////MENU/////////////////
+
+    printf("SELECTION MENU:\n");
+    printf("1. Date based Tree Options\n");
+    printf("2. Temperature based Tree Options\n");
+    printf("3. Exit\n");
+
+    int choice;
+
+    scanf("%d", &choice);
+    switch (choice)
+    {
+    case 1:
+        dateTree(rec, rec_index_temp);
+        break;
+    case 2:
+        tempTree(rec, rec_index_temp);
+        break;
+    case 3:
+        printf("Exiting the program.\n");
+        break;
+    default:
+        printf("Invalid choice, please try again.\n");
+        break;
+    }
+    return 0;
+}
+
+void dateTree(Record *rec, int rec_index_temp)
+{
+
     avl_node *root_node = NULL;
 
     root_node = insertDataToAVL(root_node, rec, rec_index_temp);
 
-    ////////////////MENU/////////////////
-
-    printf("SELECTION MENU:\n");
+    printf("TREE SORTED BY DATES MENU:\n");
 
     int exit = 0;
 
@@ -86,7 +118,7 @@ int main()
 
             Date date_to_edit;
 
-            scanf("%d-%d-%d", &date_to_edit.year, &date_to_edit.month, &date_to_edit.day);\
+            scanf("%d-%d-%d", &date_to_edit.year, &date_to_edit.month, &date_to_edit.day);
 
             while (searchAVL(root_node, date_to_edit) == 0)
             {
@@ -126,9 +158,9 @@ int main()
 
                 break;
             }
-            
+
             printf("Record to be deleted: %d/%d/%d : %d\n", date_to_delete.day, date_to_delete.month, date_to_delete.year, searchAVL(root_node, date_to_delete));
-            
+
             root_node = deleteNode(root_node, date_to_delete);
 
             printf("Record deleted successfully.\n");
@@ -146,5 +178,48 @@ int main()
             break;
         }
     }
-    return 0;
+}
+
+void tempTree(Record *rec, int rec_index_temp)
+{
+
+    avl_node *root_node = NULL;
+    root_node = insertTempDataToAVL(root_node, rec, rec_index_temp);
+
+    printf("TREE SORTED BY TEMPS MENU:\n");
+
+    int exit = 0;
+    while (exit != 1)
+    {
+        printf("1. Show Tree \n");
+        printf("2. Display days with Max Temperature: \n");
+        printf("3. Display days with Min Temperature: \n");
+        printf("4. Exit \n");
+
+        int choice;
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            finalDisplay(root_node);
+            printf("Tree displayed successfully.\n");
+            break;
+        case 2:
+            printf("Not available yet\n");
+            //  printf("Max temperature: %d\n", findMaxTemp(root_node, rec[0]));
+            break;
+        case 3:
+            printf("Not available yet\n");
+            // printf("Min temperature: %d\n", findMinTemp(root_node, rec[0]));
+            break;
+        case 4:
+            printf("Exiting the program.\n");
+            exit = 1;
+            break;
+        default:
+            printf("Invalid choice, please try again.\n");
+            break;
+        }
+    }
 }

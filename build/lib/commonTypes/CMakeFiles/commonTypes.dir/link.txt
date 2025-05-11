@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcommonTypes.a CMakeFiles/commonTypes.dir/commonTypes.c.o
+/usr/bin/ranlib libcommonTypes.a

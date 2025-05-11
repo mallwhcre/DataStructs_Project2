@@ -1,5 +1,13 @@
-
+QUESTION A DONE
 FIXED Average from each line , each line is data from a day
 DONE: AVL Tree
 
-DONE: Menu now work
+DONE: Menu now works
+
+QUESTION B
+
+menu somwhat works?
+
+Pending find max/min
+
+QUESTION C  
