@@ -99,13 +99,12 @@ static void showInOrder(avl_node *root_node)
     if (root_node != NULL)
     {
         showInOrder(root_node->left);
-        printf("\t%d-%d-%d : %dC\t", root_node->record.date.year, root_node->record.date.month,root_node->record.date.day, root_node->record.value);
+        printf("\t%d-%d-%d : %dC\t", root_node->record.date.year, root_node->record.date.month, root_node->record.date.day, root_node->record.value);
         showInOrder(root_node->right);
     }
 }
 
 /******************** PUBLIC **********************/
-
 
 void editNode(avl_node *root_node, Date date_to_edit, int new_temp)
 {
@@ -153,7 +152,7 @@ int searchAVL(avl_node *root_node, Date date)
     }
 }
 
-avl_node *insertNode(avl_node *node, Record rec) 
+avl_node *insertNode(avl_node *node, Record rec)
 {
     if (node == NULL)
     {
@@ -307,16 +306,14 @@ void showPreOrder(avl_node *root_node)
 
 void finalDisplay(avl_node *root_node)
 {
-printf("\n-----------------------------------------\n");
-printf("| Date (YYYY-MM-DD) | Temperature (C) |\n");
-printf("-----------------------------------------\n");
+    printf("\n-----------------------------------------\n");
+    printf("| Date (YYYY-MM-DD) | Temperature (C) |\n");
+    printf("-----------------------------------------\n");
 
-showInOrder(root_node);
+    showInOrder(root_node);
 
-printf("-----------------------------------------\n\n");
+    printf("-----------------------------------------\n\n");
 }
-   
-
 
 avl_node *insertDataToAVL(avl_node *root_node, Record *rec, int num_of_records)
 {
@@ -330,7 +327,7 @@ avl_node *insertDataToAVL(avl_node *root_node, Record *rec, int num_of_records)
 
 /******************AVG TEMP BASED IMPLEMENTATION******************/
 
-avl_node  *insertTempNode(avl_node *node, Record rec)
+avl_node *insertTempNode(avl_node *node, Record rec)
 {
     if (node == NULL)
     {
@@ -380,7 +377,8 @@ avl_node  *insertTempNode(avl_node *node, Record rec)
 
     return node;
 }
-avl_node *insertTempDataToAVL(avl_node *root_node, Record *rec, int num_of_records){
+avl_node *insertTempDataToAVL(avl_node *root_node, Record *rec, int num_of_records)
+{
     for (int i = 0; i < num_of_records; i++)
     {
         root_node = insertTempNode(root_node, rec[i]);
@@ -389,12 +387,71 @@ avl_node *insertTempDataToAVL(avl_node *root_node, Record *rec, int num_of_recor
     return root_node;
 }
 
-/*int findMaxTemp(){
+/******************max & min functions*****************/
+
+int findMinTemp(avl_node *root_node)
+{
+
+    if (root_node == NULL)
+    {
+        printf("Tree is empty\n");
+        return -1;
+    }
+
+    while (root_node->left != NULL)
+    {
+        root_node = root_node->left;
+    }
+
+    return root_node->record.value;
+}
+
+int findMaxTemp(avl_node *root_node)
+{
+
+    if (root_node == NULL)
+    {
+        printf("Tree is empty\n");
+        return -1;
+    }
+
+    while (root_node->right != NULL)
+    {
+        root_node = root_node->right;
+    }
+
+    return root_node->record.value;
+}
+
+void minDates(int min_temp, Record *rec, int recIndex){
+
+
+
+    if (recIndex == 0)
+    {
+        return;
+    }
+
+    if (rec[recIndex - 1].value == min_temp)
+    {
+        printf("\t%d-%d-%d\t", rec[recIndex - 1].date.year, rec[recIndex - 1].date.month, rec[recIndex - 1].date.day);
+    }
+
+    minDates(min_temp, rec, recIndex - 1);
 
 }
-*/
 
-/*int findMinTemp(){
+void maxDates(int max_temp,Record *rec, int recIndex)
+{
+    if (recIndex == 0)
+    {
+        return;
+    }
 
+    if (rec[recIndex - 1].value == max_temp)
+    {
+        printf("\t%d-%d-%d\t", rec[recIndex - 1].date.year, rec[recIndex - 1].date.month, rec[recIndex - 1].date.day);
+    }
+
+    maxDates(max_temp, rec, recIndex - 1);
 }
-*/

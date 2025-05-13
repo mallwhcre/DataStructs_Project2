@@ -202,16 +202,30 @@ void tempTree(Record *rec, int rec_index_temp)
         switch (choice)
         {
         case 1:
+
             finalDisplay(root_node);
             printf("Tree displayed successfully.\n");
+
             break;
         case 2:
-            printf("Not available yet\n");
-            //  printf("Max temperature: %d\n", findMaxTemp(root_node, rec[0]));
+
+            printf("Max temperature: %d\n", findMaxTemp(root_node));
+
+            printf("Days with max temperature: ");
+
+            maxDates(findMaxTemp(root_node), rec, rec_index_temp);
+            printf("\n");
+
             break;
         case 3:
-            printf("Not available yet\n");
-            // printf("Min temperature: %d\n", findMinTemp(root_node, rec[0]));
+
+            printf("Min temperature: %d\n", findMinTemp(root_node));
+
+            printf("Days with min temperature: ");
+
+            minDates(findMinTemp(root_node), rec, rec_index_temp);
+            printf("\n");
+
             break;
         case 4:
             printf("Exiting the program.\n");
