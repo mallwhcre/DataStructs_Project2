@@ -1,3 +1,4 @@
 add_subdirectory(AVLTree)
 add_subdirectory(FileParsing)
 add_subdirectory(commonTypes)
+add_subdirectory(HashTable)
