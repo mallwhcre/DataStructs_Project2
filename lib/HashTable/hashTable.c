@@ -5,8 +5,6 @@
 #include "hashTable.h"
 #include "commonTypes.h"
 
-
-
 #define TABLE_SIZE 50000
 
 
@@ -18,14 +16,12 @@ int hash(Record *rec, int *recIndex){
     int month=rec[*recIndex].date.month;
     int day=rec[*recIndex].date.day;
 
-    char val[24];
+    char val[8];
 
-    *val=itoa(year);
-    *val += itoa(month);
-    *val += itoa(day);
+    sprintf(val, "%d%d%d", year, month, day);
 
     for(int i=0; i<strlen(val); i++){
-        hashValue += ASCII(val[i]);
+        hashValue += (int)val[i];
     }
 
     return hashValue % TABLE_SIZE;

@@ -31,6 +31,7 @@ int main()
     }
     Record rec[MAX_ENTRIES];
     readFile(rec, &rec_index_temp, temps);
+    
     printf("%d",hash(rec,&rec_index_temp));
 
     for (int i = 0; i < rec_index_temp; i++)
