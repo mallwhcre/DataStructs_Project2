@@ -8,6 +8,8 @@
 #define MAX_ENTRIES 50000
 #define MAX_LINELEN 5000
 
+void hashMenu(Record *rec, int rec_index_temp);
+
 void avlMenu(Record *rec, int rec_index_temp);
 static void dateTree(Record *rec, int rec_index_temp);
 static void tempTree(Record *rec, int rec_index_temp);
@@ -31,8 +33,7 @@ int main()
     }
     Record rec[MAX_ENTRIES];
     readFile(rec, &rec_index_temp, temps);
-    
-    printf("%d",hash(rec,&rec_index_temp));
+
 
     for (int i = 0; i < rec_index_temp; i++)
     {
@@ -57,7 +58,7 @@ int main()
         break;
     case 2:
 
-        printf("Hash Table is not implemented yet.\n");
+        hashMenu(rec, rec_index_temp);
         break;
     case 3:
 
@@ -271,6 +272,47 @@ static void tempTree(Record *rec, int rec_index_temp)
     }
 }
 
-void hashMenu(){
+void hashMenu(Record *rec, int rec_index_temp)
+{
+    hashTable *table = NULL;
+    table = createHashTable();
+    insertDataToHashTable(table, rec, &rec_index_temp);
 
+
+    printf("Hash Table Menu:\n");
+    printf("1. Search for average temp of a certain date\n");
+    printf("2. Modify average on a certain date\n");
+    printf("3. Delete Record of certain date\n");
+    printf("4. Display Hash Table\n");
+    printf("5. Exit\n");
+
+    int choice;
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+    case 1:
+        printf("Not implemented yet.\n");
+        // Search record logic
+        break;
+    case 2:
+        printf("Not implemented yet.\n");
+
+        // Modify record logic
+        break;
+    case 3:
+        printf("Not implemented yet.\n");
+
+        // Delete record logic
+        break;
+    case 4:
+        dumpHashTable(table);
+        break;
+    case 5:
+        printf("Exiting the program.\n");
+        break;
+    default:
+        printf("Invalid choice, please try again.\n");
+        break;
+    }
 }
