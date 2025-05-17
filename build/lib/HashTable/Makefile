@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles /home/mar/Documents/CEID/DataStructs/Project25_2/build//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles /home/mar/Documents/CEID/DataStructs/Project25_2/build/lib/HashTable//CMakeFiles/progress.marks
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/HashTable/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/HashTable/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,83 +103,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/HashTable/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/HashTable/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named AVLTree
+# Convenience name for target.
+lib/HashTable/CMakeFiles/HashTable.dir/rule:
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/HashTable/CMakeFiles/HashTable.dir/rule
+.PHONY : lib/HashTable/CMakeFiles/HashTable.dir/rule
 
-# Build rule for target.
-AVLTree: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AVLTree
-.PHONY : AVLTree
-
-# fast build rule for target.
-AVLTree/fast:
-	$(MAKE) $(MAKESILENT) -f lib/AVLTree/CMakeFiles/AVLTree.dir/build.make lib/AVLTree/CMakeFiles/AVLTree.dir/build
-.PHONY : AVLTree/fast
-
-#=============================================================================
-# Target rules for targets named FileParsing
-
-# Build rule for target.
-FileParsing: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FileParsing
-.PHONY : FileParsing
-
-# fast build rule for target.
-FileParsing/fast:
-	$(MAKE) $(MAKESILENT) -f lib/FileParsing/CMakeFiles/FileParsing.dir/build.make lib/FileParsing/CMakeFiles/FileParsing.dir/build
-.PHONY : FileParsing/fast
-
-#=============================================================================
-# Target rules for targets named commonTypes
-
-# Build rule for target.
-commonTypes: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 commonTypes
-.PHONY : commonTypes
-
-# fast build rule for target.
-commonTypes/fast:
-	$(MAKE) $(MAKESILENT) -f lib/commonTypes/CMakeFiles/commonTypes.dir/build.make lib/commonTypes/CMakeFiles/commonTypes.dir/build
-.PHONY : commonTypes/fast
-
-#=============================================================================
-# Target rules for targets named HashTable
-
-# Build rule for target.
-HashTable: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 HashTable
+# Convenience name for target.
+HashTable: lib/HashTable/CMakeFiles/HashTable.dir/rule
 .PHONY : HashTable
 
 # fast build rule for target.
 HashTable/fast:
-	$(MAKE) $(MAKESILENT) -f lib/HashTable/CMakeFiles/HashTable.dir/build.make lib/HashTable/CMakeFiles/HashTable.dir/build
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(MAKE) $(MAKESILENT) -f lib/HashTable/CMakeFiles/HashTable.dir/build.make lib/HashTable/CMakeFiles/HashTable.dir/build
 .PHONY : HashTable/fast
 
-#=============================================================================
-# Target rules for targets named DataStructsII
+hashTable.o: hashTable.c.o
+.PHONY : hashTable.o
 
-# Build rule for target.
-DataStructsII: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DataStructsII
-.PHONY : DataStructsII
+# target to build an object file
+hashTable.c.o:
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(MAKE) $(MAKESILENT) -f lib/HashTable/CMakeFiles/HashTable.dir/build.make lib/HashTable/CMakeFiles/HashTable.dir/hashTable.c.o
+.PHONY : hashTable.c.o
 
-# fast build rule for target.
-DataStructsII/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/DataStructsII.dir/build.make src/CMakeFiles/DataStructsII.dir/build
-.PHONY : DataStructsII/fast
+hashTable.i: hashTable.c.i
+.PHONY : hashTable.i
+
+# target to preprocess a source file
+hashTable.c.i:
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(MAKE) $(MAKESILENT) -f lib/HashTable/CMakeFiles/HashTable.dir/build.make lib/HashTable/CMakeFiles/HashTable.dir/hashTable.c.i
+.PHONY : hashTable.c.i
+
+hashTable.s: hashTable.c.s
+.PHONY : hashTable.s
+
+# target to generate assembly for a file
+hashTable.c.s:
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(MAKE) $(MAKESILENT) -f lib/HashTable/CMakeFiles/HashTable.dir/build.make lib/HashTable/CMakeFiles/HashTable.dir/hashTable.c.s
+.PHONY : hashTable.c.s
 
 # Help Target
 help:
@@ -189,11 +162,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... AVLTree"
-	@echo "... DataStructsII"
-	@echo "... FileParsing"
 	@echo "... HashTable"
-	@echo "... commonTypes"
+	@echo "... hashTable.o"
+	@echo "... hashTable.i"
+	@echo "... hashTable.s"
 .PHONY : help
 
 
@@ -205,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/mar/Documents/CEID/DataStructs/Project25_2/lib/AVLTree -I/home/mar/Documents/CEID/DataStructs/Project25_2/lib/commonTypes -I/home/mar/Documents/CEID/DataStructs/Project25_2/lib/FileParsing
+C_INCLUDES = -I/home/mar/Documents/CEID/DataStructs/Project25_2/lib/AVLTree -I/home/mar/Documents/CEID/DataStructs/Project25_2/lib/commonTypes -I/home/mar/Documents/CEID/DataStructs/Project25_2/lib/FileParsing -I/home/mar/Documents/CEID/DataStructs/Project25_2/lib/HashTable
 
 C_FLAGS = 
 

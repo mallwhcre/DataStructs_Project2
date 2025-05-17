@@ -3,7 +3,7 @@
 
 #include "commonTypes.h"
 
-int hash(Record *rec);
+int hash(Record *rec, int *recIndex);
 
 
 #endif

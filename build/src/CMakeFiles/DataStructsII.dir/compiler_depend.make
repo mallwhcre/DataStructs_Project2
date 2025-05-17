@@ -58,8 +58,11 @@ src/CMakeFiles/DataStructsII.dir/DataStructsII.c.o: /home/mar/Documents/CEID/Dat
   /home/mar/Documents/CEID/DataStructs/Project25_2/lib/AVLTree/avlTree.h \
   /home/mar/Documents/CEID/DataStructs/Project25_2/lib/commonTypes/commonTypes.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
-  /home/mar/Documents/CEID/DataStructs/Project25_2/lib/FileParsing/fileParsing.h
+  /home/mar/Documents/CEID/DataStructs/Project25_2/lib/FileParsing/fileParsing.h \
+  /home/mar/Documents/CEID/DataStructs/Project25_2/lib/HashTable/hashTable.h
 
+
+/home/mar/Documents/CEID/DataStructs/Project25_2/lib/HashTable/hashTable.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h:
 

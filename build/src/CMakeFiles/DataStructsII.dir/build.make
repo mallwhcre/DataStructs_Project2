@@ -95,6 +95,8 @@ DataStructsII: src/CMakeFiles/DataStructsII.dir/build.make
 DataStructsII: lib/AVLTree/libAVLTree.a
 DataStructsII: lib/FileParsing/libFileParsing.a
 DataStructsII: lib/commonTypes/libcommonTypes.a
+DataStructsII: lib/HashTable/libHashTable.a
+DataStructsII: lib/commonTypes/libcommonTypes.a
 DataStructsII: src/CMakeFiles/DataStructsII.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable ../DataStructsII"
 	cd /home/mar/Documents/CEID/DataStructs/Project25_2/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DataStructsII.dir/link.txt --verbose=$(VERBOSE)

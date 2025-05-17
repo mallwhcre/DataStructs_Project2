@@ -435,7 +435,7 @@ void minDates(int min_temp, Record *rec, int recIndex){
     if (rec[recIndex - 1].value == min_temp)
     {
         printf("\t%d-%d-%d\t", rec[recIndex - 1].date.year, rec[recIndex - 1].date.month, rec[recIndex - 1].date.day);
-    }
+    } 
 
     minDates(min_temp, rec, recIndex - 1);
 

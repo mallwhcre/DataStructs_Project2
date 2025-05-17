@@ -84,18 +84,21 @@ clean: src/clean
 lib/all: lib/AVLTree/all
 lib/all: lib/FileParsing/all
 lib/all: lib/commonTypes/all
+lib/all: lib/HashTable/all
 .PHONY : lib/all
 
 # Recursive "preinstall" directory target.
 lib/preinstall: lib/AVLTree/preinstall
 lib/preinstall: lib/FileParsing/preinstall
 lib/preinstall: lib/commonTypes/preinstall
+lib/preinstall: lib/HashTable/preinstall
 .PHONY : lib/preinstall
 
 # Recursive "clean" directory target.
 lib/clean: lib/AVLTree/clean
 lib/clean: lib/FileParsing/clean
 lib/clean: lib/commonTypes/clean
+lib/clean: lib/HashTable/clean
 .PHONY : lib/clean
 
 #=============================================================================
@@ -127,6 +130,21 @@ lib/FileParsing/preinstall:
 # Recursive "clean" directory target.
 lib/FileParsing/clean: lib/FileParsing/CMakeFiles/FileParsing.dir/clean
 .PHONY : lib/FileParsing/clean
+
+#=============================================================================
+# Directory level rules for directory lib/HashTable
+
+# Recursive "all" directory target.
+lib/HashTable/all: lib/HashTable/CMakeFiles/HashTable.dir/all
+.PHONY : lib/HashTable/all
+
+# Recursive "preinstall" directory target.
+lib/HashTable/preinstall:
+.PHONY : lib/HashTable/preinstall
+
+# Recursive "clean" directory target.
+lib/HashTable/clean: lib/HashTable/CMakeFiles/HashTable.dir/clean
+.PHONY : lib/HashTable/clean
 
 #=============================================================================
 # Directory level rules for directory lib/commonTypes
@@ -217,7 +235,7 @@ lib/FileParsing/CMakeFiles/FileParsing.dir/clean:
 lib/commonTypes/CMakeFiles/commonTypes.dir/all:
 	$(MAKE) $(MAKESILENT) -f lib/commonTypes/CMakeFiles/commonTypes.dir/build.make lib/commonTypes/CMakeFiles/commonTypes.dir/depend
 	$(MAKE) $(MAKESILENT) -f lib/commonTypes/CMakeFiles/commonTypes.dir/build.make lib/commonTypes/CMakeFiles/commonTypes.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles --progress-num=7,8 "Built target commonTypes"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles --progress-num=9,10 "Built target commonTypes"
 .PHONY : lib/commonTypes/CMakeFiles/commonTypes.dir/all
 
 # Build rule for subdir invocation for target.
@@ -237,12 +255,39 @@ lib/commonTypes/CMakeFiles/commonTypes.dir/clean:
 .PHONY : lib/commonTypes/CMakeFiles/commonTypes.dir/clean
 
 #=============================================================================
+# Target rules for target lib/HashTable/CMakeFiles/HashTable.dir
+
+# All Build rule for target.
+lib/HashTable/CMakeFiles/HashTable.dir/all: lib/commonTypes/CMakeFiles/commonTypes.dir/all
+	$(MAKE) $(MAKESILENT) -f lib/HashTable/CMakeFiles/HashTable.dir/build.make lib/HashTable/CMakeFiles/HashTable.dir/depend
+	$(MAKE) $(MAKESILENT) -f lib/HashTable/CMakeFiles/HashTable.dir/build.make lib/HashTable/CMakeFiles/HashTable.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles --progress-num=7,8 "Built target HashTable"
+.PHONY : lib/HashTable/CMakeFiles/HashTable.dir/all
+
+# Build rule for subdir invocation for target.
+lib/HashTable/CMakeFiles/HashTable.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/HashTable/CMakeFiles/HashTable.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles 0
+.PHONY : lib/HashTable/CMakeFiles/HashTable.dir/rule
+
+# Convenience name for target.
+HashTable: lib/HashTable/CMakeFiles/HashTable.dir/rule
+.PHONY : HashTable
+
+# clean rule for target.
+lib/HashTable/CMakeFiles/HashTable.dir/clean:
+	$(MAKE) $(MAKESILENT) -f lib/HashTable/CMakeFiles/HashTable.dir/build.make lib/HashTable/CMakeFiles/HashTable.dir/clean
+.PHONY : lib/HashTable/CMakeFiles/HashTable.dir/clean
+
+#=============================================================================
 # Target rules for target src/CMakeFiles/DataStructsII.dir
 
 # All Build rule for target.
 src/CMakeFiles/DataStructsII.dir/all: lib/AVLTree/CMakeFiles/AVLTree.dir/all
 src/CMakeFiles/DataStructsII.dir/all: lib/FileParsing/CMakeFiles/FileParsing.dir/all
 src/CMakeFiles/DataStructsII.dir/all: lib/commonTypes/CMakeFiles/commonTypes.dir/all
+src/CMakeFiles/DataStructsII.dir/all: lib/HashTable/CMakeFiles/HashTable.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/DataStructsII.dir/build.make src/CMakeFiles/DataStructsII.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/DataStructsII.dir/build.make src/CMakeFiles/DataStructsII.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles --progress-num=3,4 "Built target DataStructsII"
@@ -250,7 +295,7 @@ src/CMakeFiles/DataStructsII.dir/all: lib/commonTypes/CMakeFiles/commonTypes.dir
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/DataStructsII.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/DataStructsII.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mar/Documents/CEID/DataStructs/Project25_2/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/DataStructsII.dir/rule

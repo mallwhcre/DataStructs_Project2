@@ -3,12 +3,14 @@
 
 #include "avlTree.h"
 #include "fileParsing.h"
+#include "hashTable.h"
 
 #define MAX_ENTRIES 50000
 #define MAX_LINELEN 5000
 
-void dateTree(Record *rec, int rec_index_temp);
-void tempTree();
+void avlMenu(Record *rec, int rec_index_temp);
+static void dateTree(Record *rec, int rec_index_temp);
+static void tempTree(Record *rec, int rec_index_temp);
 
 int main()
 {
@@ -29,6 +31,7 @@ int main()
     }
     Record rec[MAX_ENTRIES];
     readFile(rec, &rec_index_temp, temps);
+    printf("%d",hash(rec,&rec_index_temp));
 
     for (int i = 0; i < rec_index_temp; i++)
     {
@@ -37,8 +40,38 @@ int main()
 
     printf("\n\n");
 
-    ////////////////MENU/////////////////
+    printf("CHOOSE A DATA STRUCTURE:\n");
+    printf("1. AVL Tree\n");
+    printf("2. Hash Table\n");
+    printf("3. Exit\n");
 
+    int choice;
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+    case 1:
+
+        avlMenu(rec, rec_index_temp);
+        break;
+    case 2:
+
+        printf("Hash Table is not implemented yet.\n");
+        break;
+    case 3:
+
+        printf("Exiting the program.\n");
+        break;
+    default:
+
+        printf("Invalid choice, please try again.\n");
+        break;
+    }
+    return 0;
+}
+
+void avlMenu(Record *rec, int rec_index_temp)
+{
     printf("SELECTION MENU:\n");
     printf("1. Date based Tree Options\n");
     printf("2. Temperature based Tree Options\n");
@@ -62,10 +95,9 @@ int main()
         printf("Invalid choice, please try again.\n");
         break;
     }
-    return 0;
 }
 
-void dateTree(Record *rec, int rec_index_temp)
+static void dateTree(Record *rec, int rec_index_temp)
 {
 
     avl_node *root_node = NULL;
@@ -180,7 +212,7 @@ void dateTree(Record *rec, int rec_index_temp)
     }
 }
 
-void tempTree(Record *rec, int rec_index_temp)
+static void tempTree(Record *rec, int rec_index_temp)
 {
 
     avl_node *root_node = NULL;
@@ -236,4 +268,8 @@ void tempTree(Record *rec, int rec_index_temp)
             break;
         }
     }
+}
+
+void hashMenu(){
+
 }

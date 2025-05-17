@@ -1,3 +1,3 @@
 add_executable(DataStructsII DataStructsII.c)
 
-target_link_libraries(DataStructsII PRIVATE AVLTree FileParsing commonTypes)
+target_link_libraries(DataStructsII PRIVATE AVLTree FileParsing commonTypes HashTable)

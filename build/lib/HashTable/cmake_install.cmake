@@ -1,4 +1,4 @@
-# Install script for directory: /home/mar/Documents/CEID/DataStructs/Project25_2/lib
+# Install script for directory: /home/mar/Documents/CEID/DataStructs/Project25_2/lib/HashTable
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,14 +40,5 @@ endif()
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/objdump")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
-  include("/home/mar/Documents/CEID/DataStructs/Project25_2/build/lib/AVLTree/cmake_install.cmake")
-  include("/home/mar/Documents/CEID/DataStructs/Project25_2/build/lib/FileParsing/cmake_install.cmake")
-  include("/home/mar/Documents/CEID/DataStructs/Project25_2/build/lib/commonTypes/cmake_install.cmake")
-  include("/home/mar/Documents/CEID/DataStructs/Project25_2/build/lib/HashTable/cmake_install.cmake")
-
 endif()
 
