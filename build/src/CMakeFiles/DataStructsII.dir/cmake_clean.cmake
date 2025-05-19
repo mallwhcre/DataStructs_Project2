@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "../DataStructsII"
   "../DataStructsII.pdb"
+  "CMakeFiles/DataStructsII.dir/link.d"
   "CMakeFiles/DataStructsII.dir/DataStructsII.c.o"
   "CMakeFiles/DataStructsII.dir/DataStructsII.c.o.d"
 )

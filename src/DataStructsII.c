@@ -193,7 +193,7 @@ static void dateTree(Record *rec, int rec_index_temp)
                 break;
             }
 
-            printf("Record to be deleted: %d/%d/%d : %d\n", date_to_delete.day, date_to_delete.month, date_to_delete.year, searchAVL(root_node, date_to_delete));
+            printf("Record to be deleted: %d/%d/%d : %dC\n", date_to_delete.day, date_to_delete.month, date_to_delete.year, searchAVL(root_node, date_to_delete));
 
             root_node = deleteNode(root_node, date_to_delete);
 
@@ -292,18 +292,33 @@ void hashMenu(Record *rec, int rec_index_temp)
     switch (choice)
     {
     case 1:
-        printf("Not implemented yet.\n");
-        // Search record logic
-        break;
+       printf("Enter the date to search (yyyy-mm-dd): ");
+
+            Date date_to_search;
+
+            scanf("%d-%d-%d", &date_to_search.year, &date_to_search.month, &date_to_search.day);
+
+            searchHash(table, date_to_search);
+
+            if (searchHash(table, date_to_search) == 0)
+            {
+                printf("No record found for the given date.\n");
+
+                break;
+            }
+
+            printf("Record found: %d/%d/%d : %dC\n", date_to_search.day, date_to_search.month, date_to_search.year,searchHash(table,date_to_search));
+
+            break;
     case 2:
-        printf("Not implemented yet.\n");
+        printf("Modification of record is not implemented yet.\n");
 
         // Modify record logic
         break;
     case 3:
-        printf("Not implemented yet.\n");
+        printf("Deletion of record is not implemented yet.\n");
 
-        // Delete record logic
+        // Delete record logics
         break;
     case 4:
         dumpHashTable(table);

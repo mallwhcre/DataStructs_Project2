@@ -5,10 +5,19 @@ DONE: Menu now works
 
 QUESTION B DONE 
 
-Resolved Min & max work
+Resolved Min & max works
 menu works 
 
 QUESTION C  HASHING
 
-Started working on hashing
+Hash Table is now visible and data is appended (a lot of collisions might be on purpose apton big siouta)
+Added seach :)
 
+PENDING:
+modify average of date
+delete record of date
+
+
+PENDING:
+
+Add a continue option after each choice to keep testing functions 

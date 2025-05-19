@@ -3,7 +3,7 @@
 
 #include "commonTypes.h"
 
-#define TABLE_SIZE 50000
+#define TABLE_SIZE 50024
 
 typedef struct hashNode
 {
@@ -19,11 +19,12 @@ typedef struct hashTable
 
 } hashTable;
 
-int hash(Record *rec, int *recIndex); // creates hash values for each rec
+int hash(Date date); // creates hash values for each rec
 
 hashTable *createHashTable();
 void insertRecord(hashTable *table, Record *rec, int *recIndex);
 void dumpHashTable(hashTable *table);
 void insertDataToHashTable(hashTable *table, Record *rec, int *recIndex);
+int searchHash(hashTable *table, Date date_to_search);
 
 #endif

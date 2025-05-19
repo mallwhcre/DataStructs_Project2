@@ -5,18 +5,13 @@
 #include "hashTable.h"
 #include "commonTypes.h"
 
-int hash(Record *rec, int *recIndex)
+int hash(Date date)
 {
 
   int hashValue = 0;
-
-  int year = rec[*recIndex].date.year;
-  int month = rec[*recIndex].date.month;
-  int day = rec[*recIndex].date.day;
-
   char val[8];
 
-  sprintf(val, "%d%d%d", year, month, day);
+  sprintf(val, "%d%d%d", date.year, date.month, date.day);
 
   for (int i = 0; i < strlen(val); i++)
   {
@@ -44,8 +39,9 @@ hashTable *createHashTable()
 }
 
 void insertRecord(hashTable *table, Record *rec, int *recIndex)
-{
-  int hashValue = hash(rec, recIndex);
+{ 
+  Date dateToHash = rec[*recIndex].date;
+  int hashValue = hash(dateToHash);
   hashNode *newNode = (hashNode *)malloc(sizeof(hashNode));
 
   newNode->record = rec[*recIndex];
@@ -77,3 +73,21 @@ void dumpHashTable(hashTable *table)
     }
   }
 }
+
+int searchHash(hashTable *table,Date date_to_search)
+{
+  int hashValue = hash(date_to_search);
+  hashNode *current = table->buckets[hashValue];
+  
+  while (current != NULL)
+  {
+    if (dateIsEqual(current->record.date, date_to_search))
+    {
+     return current->record.value;
+    }
+    current = current->next;
+  }
+  return 0;
+
+}
+
