@@ -26,5 +26,7 @@ void insertRecord(hashTable *table, Record *rec, int *recIndex);
 void dumpHashTable(hashTable *table);
 void insertDataToHashTable(hashTable *table, Record *rec, int *recIndex);
 int searchHash(hashTable *table, Date date_to_search);
+void editHashNode(hashTable *table, Date date_to_edit, int newVal);
+void deleteHashNode(hashTable *table, Date date_to_delete);
 
 #endif

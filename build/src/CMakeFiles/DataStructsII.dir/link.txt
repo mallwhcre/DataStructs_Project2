@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/DataStructsII.dir/link.d CMakeFiles/DataStructsII.dir/DataStructsII.c.o -o ../DataStructsII  ../lib/AVLTree/libAVLTree.a ../lib/FileParsing/libFileParsing.a ../lib/commonTypes/libcommonTypes.a ../lib/HashTable/libHashTable.a ../lib/commonTypes/libcommonTypes.a

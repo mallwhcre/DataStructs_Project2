@@ -34,7 +34,6 @@ int main()
     Record rec[MAX_ENTRIES];
     readFile(rec, &rec_index_temp, temps);
 
-
     for (int i = 0; i < rec_index_temp; i++)
     {
         splitDate(rec, i);
@@ -160,19 +159,24 @@ static void dateTree(Record *rec, int rec_index_temp)
                 printf("Please enter a valid date to modify (yyyy-mm-dd): ");
 
                 scanf("%d-%d-%d", &date_to_edit.year, &date_to_edit.month, &date_to_edit.day);
-
-                break;
             }
             printf("Old record: %d/%d/%d : %d\n", date_to_edit.day, date_to_edit.month, date_to_edit.year, searchAVL(root_node, date_to_edit));
-
+            int oldTemp = searchAVL(root_node, date_to_edit);
             printf("Enter the new temperature average: ");
 
             int new_temp;
             scanf("%d", &new_temp);
 
             editNode(root_node, date_to_edit, new_temp);
-            printf("Record modified successfully.\n");
-
+            if (oldTemp != searchAVL(root_node, date_to_edit))
+            {
+                printf("Record modified successfully.\n");
+            }
+            else
+            {
+                printf("Record unable to be edited.\n");
+                break;
+            }
             printf("New record: %d/%d/%d : %d\n", date_to_edit.day, date_to_edit.month, date_to_edit.year, searchAVL(root_node, date_to_edit));
 
             break;
@@ -189,15 +193,20 @@ static void dateTree(Record *rec, int rec_index_temp)
                 printf("Please enter a valid date to delete (yyyy-mm-dd): ");
 
                 scanf("%d-%d-%d", &date_to_delete.year, &date_to_delete.month, &date_to_delete.day);
-
-                break;
             }
 
             printf("Record to be deleted: %d/%d/%d : %dC\n", date_to_delete.day, date_to_delete.month, date_to_delete.year, searchAVL(root_node, date_to_delete));
 
             root_node = deleteNode(root_node, date_to_delete);
 
-            printf("Record deleted successfully.\n");
+            if (searchAVL(root_node, date_to_delete) == 0)
+            {
+                printf("Record deleted successfully.\n");
+            }
+            else
+            {
+                printf("Unable to delete record.\n");
+            }
 
             break;
         case 5:
@@ -278,21 +287,24 @@ void hashMenu(Record *rec, int rec_index_temp)
     table = createHashTable();
     insertDataToHashTable(table, rec, &rec_index_temp);
 
-
     printf("Hash Table Menu:\n");
-    printf("1. Search for average temp of a certain date\n");
-    printf("2. Modify average on a certain date\n");
-    printf("3. Delete Record of certain date\n");
-    printf("4. Display Hash Table\n");
-    printf("5. Exit\n");
 
-    int choice;
-    scanf("%d", &choice);
-
-    switch (choice)
+    int exit = 0;
+    while (exit == 0)
     {
-    case 1:
-       printf("Enter the date to search (yyyy-mm-dd): ");
+        printf("1. Search for average temp of a certain date\n");
+        printf("2. Modify average on a certain date\n");
+        printf("3. Delete Record of certain date\n");
+        printf("4. Display Hash Table\n");
+        printf("5. Exit\n");
+
+        int choice;
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            printf("Enter the date to search (yyyy-mm-dd): ");
 
             Date date_to_search;
 
@@ -307,27 +319,82 @@ void hashMenu(Record *rec, int rec_index_temp)
                 break;
             }
 
-            printf("Record found: %d/%d/%d : %dC\n", date_to_search.day, date_to_search.month, date_to_search.year,searchHash(table,date_to_search));
+            printf("Record found: %d/%d/%d : %dC\n", date_to_search.day, date_to_search.month, date_to_search.year, searchHash(table, date_to_search));
 
             break;
-    case 2:
-        printf("Modification of record is not implemented yet.\n");
+        case 2:
+            // printf("Modification of record is not implemented yet.\n");
 
-        // Modify record logic
-        break;
-    case 3:
-        printf("Deletion of record is not implemented yet.\n");
+            printf("Enter the date to modify (yyyy-mm-dd): ");
 
-        // Delete record logics
-        break;
-    case 4:
-        dumpHashTable(table);
-        break;
-    case 5:
-        printf("Exiting the program.\n");
-        break;
-    default:
-        printf("Invalid choice, please try again.\n");
-        break;
+            Date date_to_edit;
+
+            scanf("%d-%d-%d", &date_to_edit.year, &date_to_edit.month, &date_to_edit.day);
+
+            while (searchHash(table, date_to_edit) == 0)
+            {
+                printf("No record found for the given date.\n");
+                printf("Please enter a valid date to modify (yyyy-mm-dd): ");
+
+                scanf("%d-%d-%d", &date_to_edit.year, &date_to_edit.month, &date_to_edit.day);
+            }
+            printf("Old record: %d/%d/%d : %d\n", date_to_edit.day, date_to_edit.month, date_to_edit.year, searchHash(table, date_to_edit));
+            int oldValue = searchHash(table, date_to_edit);
+            printf("Enter the new temperature average: ");
+
+            int new_temp;
+            scanf("%d", &new_temp);
+
+            editHashNode(table, date_to_edit, new_temp);
+            if (searchHash(table, date_to_edit) != oldValue)
+            {
+                printf("Record modified successfully.\n");
+            }
+            else
+            {
+                printf("Record unable to be edited.\n");
+                break;
+            }
+
+            printf("New record: %d/%d/%d : %d\n", date_to_edit.day, date_to_edit.month, date_to_edit.year, searchHash(table, date_to_edit));
+
+            break;
+        case 3:
+
+            int isDeleted = 0;
+            printf("Enter the date to delete (yyyy-mm-dd): ");
+
+            Date date_to_delete;
+
+            scanf("%d-%d-%d", &date_to_delete.year, &date_to_delete.month, &date_to_delete.day);
+
+            while (searchHash(table, date_to_delete) == 0 && isDeleted == 0)
+            {
+                printf("No record found for the given date.\n");
+                printf("Please enter a valid date to delete (yyyy-mm-dd): ");
+
+                scanf("%d-%d-%d", &date_to_delete.year, &date_to_delete.month, &date_to_delete.day);
+            }
+
+            printf("Record to be deleted: %d/%d/%d : %dC\n", date_to_delete.day, date_to_delete.month, date_to_delete.year, searchHash(table, date_to_delete));
+
+            deleteHashNode(table, date_to_delete);
+            if (searchHash(table, date_to_delete) == 0)
+            {
+                printf("Record deleted successfully.\n");
+                break;
+            }
+
+        case 4:
+            dumpHashTable(table);
+            break;
+        case 5:
+            printf("Exiting the program.\n");
+            exit = 1;
+            break;
+        default:
+            printf("Invalid choice, please try again.\n");
+            break;
+        }
     }
 }

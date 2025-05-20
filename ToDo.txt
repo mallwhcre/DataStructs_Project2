@@ -12,12 +12,14 @@ QUESTION C  HASHING
 
 Hash Table is now visible and data is appended (a lot of collisions might be on purpose apton big siouta)
 Added seach :)
+modification of average now works
 
 PENDING:
-modify average of date
 delete record of date
 
 
 PENDING:
-
 Add a continue option after each choice to keep testing functions 
+
+PENDING:
+Bonus

@@ -87,7 +87,45 @@ int searchHash(hashTable *table,Date date_to_search)
     }
     current = current->next;
   }
+
   return 0;
+}
+void editHashNode(hashTable *table, Date date_to_edit, int newVal){
+
+  int hashValue =hash(date_to_edit);
+  hashNode *current= table->buckets[hashValue];
+
+  while (current != NULL)
+  {
+    if (dateIsEqual(current -> record.date, date_to_edit))
+    {
+      current->record.value= newVal;
+    }
+    current=current->next;
+  }
 
 }
 
+void deleteHashNode(hashTable *table, Date date_to_delete){
+  int hashValue=hash(date_to_delete);
+  hashNode *current=table->buckets[hashValue];
+  hashNode *previous=NULL;
+
+  while (current!=NULL){
+    if (dateIsEqual(current->record.date, date_to_delete)){
+       if (previous==NULL)
+       {
+        table->buckets[hashValue]=current->next; //if date is the head of the bucket point to the next bucket 
+       }
+       else {
+        previous->next=current->next; //else link the previous node to the next node after the current 
+       }
+
+       free(current);
+
+    }
+
+    previous=current;
+    current= current->next;
+  }
+}
