@@ -1,0 +1,2 @@
+/usr/bin/ar qc libHashTable.a CMakeFiles/HashTable.dir/hashTable.c.o
+/usr/bin/ranlib libHashTable.a

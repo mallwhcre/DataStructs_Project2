@@ -1,0 +1,13 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/mariakarkani/Documents/Ceid/dataStructs/DataStructs_Project2/build/cmake_install.cmake",
+		"/Users/mariakarkani/Documents/Ceid/dataStructs/DataStructs_Project2/build/lib/cmake_install.cmake",
+		"/Users/mariakarkani/Documents/Ceid/dataStructs/DataStructs_Project2/build/lib/AVLTree/cmake_install.cmake",
+		"/Users/mariakarkani/Documents/Ceid/dataStructs/DataStructs_Project2/build/lib/FileParsing/cmake_install.cmake",
+		"/Users/mariakarkani/Documents/Ceid/dataStructs/DataStructs_Project2/build/lib/commonTypes/cmake_install.cmake",
+		"/Users/mariakarkani/Documents/Ceid/dataStructs/DataStructs_Project2/build/lib/HashTable/cmake_install.cmake",
+		"/Users/mariakarkani/Documents/Ceid/dataStructs/DataStructs_Project2/build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

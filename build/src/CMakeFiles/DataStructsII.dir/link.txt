@@ -1,0 +1,1 @@
+/usr/bin/cc  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/DataStructsII.dir/DataStructsII.c.o -o ../DataStructsII  ../lib/AVLTree/libAVLTree.a ../lib/FileParsing/libFileParsing.a ../lib/commonTypes/libcommonTypes.a ../lib/HashTable/libHashTable.a ../lib/commonTypes/libcommonTypes.a
